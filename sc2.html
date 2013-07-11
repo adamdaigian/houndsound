@@ -1,0 +1,32 @@
+<head>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+
+
+
+
+<script src="//connect.soundcloud.com/sdk.js"></script>
+<script>
+  SC.initialize({
+    client_id: "45e1f7e473518eccbcb6bc27ecac7c44"
+  });
+
+
+
+  $("#loadTracks").live("click", function(){
+    SC.get("/tracks", {limit: 1}, function(tracks){
+      var track = tracks[0];
+      SC.oEmbed(track.uri, document.getElementById("track"));
+    });
+  });
+</script>
+<script>
+  SC.oEmbed("http://soundcloud.com/forss/flickermood", {auto_play: true}, function(oembed){
+    console.log("oEmbed response: ", oembed);
+  });
+</script>
+<input type="button" id="loadTracks" class="button big" value="Get hottest track"/>
+
+
+<div id="track"></div>

@@ -1,11 +1,11 @@
-function playSomeSound(genre) {
+function playSomeSound(songs) {
 	SC.get('/tracks', {
-	genres: genre,
-  }, 
-
-function(tracks) {
+		playback_count: {
+			from: 100
+		}
+  }, function(tracks) {
     var random = Math.floor(Math.random() * 49);
-    SC.oEmbed(tracks[random].uri, { auto_play: true }, document.getElementById('target'));
+    SC.oEmbed(tracks[random].uri, { auto_play: false }, document.getElementById('target'));
   });
 }
 
