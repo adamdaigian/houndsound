@@ -2,19 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>HoundSound</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <script src="http://connect.soundcloud.com/sdk.js"></script>
 
-    <link href="docs/assets/css/bootstrap.css" rel="stylesheet">
-    <link href="docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
   </head>
 
   <body>
@@ -46,34 +43,14 @@
       <div class="row-fluid">
 
         <div class="span9 pull-left">
-          <div class="hero-unit">
-            <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F94371600"></iframe>
+          <div class="tracks">
+    <script id="trackTemplate" type="text/template">
+      <iframe width="100%" height="166" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F<%= id %>&amp;show_artwork=true&amp;auto_play=fals
+e&amp;color=00c37a&amp;show_comments=false"></iframe>
+    </script>
+  </div>
           </div>
-          <div class="hero-unit">
-            <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F94304790"></iframe>
-          </div>
-          <div class="hero-unit">
-            <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F94123129"></iframe>
-          </div>
-          <div class="hero-unit">
-            <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F62917975"></iframe>
-          </div>
-          <div class="hero-unit">
-            <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F93555520"></iframe>
-          </div>
-          <div class="hero-unit">
-          </div>
-          <div class="hero-unit">
-          </div>
-          <div class="hero-unit">
-          </div>
-          <div class="hero-unit">
-          </div>
-          <div class="hero-unit">
-          </div>
-          <div class="hero-unit">
-          </div>
-      </div><!--/row-->
+      
 
       <div class="span3 pull-right">
           <div class="well sidebar-nav">
@@ -107,26 +84,15 @@
           </div><!--/.well -->
         </div><!--/span-->
 
-
+</div><!--/row-->
 
     </div><!--/.fluid-container-->
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/bootstrap-transition.js"></script>
-    <script src="../assets/js/bootstrap-alert.js"></script>
-    <script src="../assets/js/bootstrap-modal.js"></script>
-    <script src="../assets/js/bootstrap-dropdown.js"></script>
-    <script src="../assets/js/bootstrap-scrollspy.js"></script>
-    <script src="../assets/js/bootstrap-tab.js"></script>
-    <script src="../assets/js/bootstrap-tooltip.js"></script>
-    <script src="../assets/js/bootstrap-popover.js"></script>
-    <script src="../assets/js/bootstrap-button.js"></script>
-    <script src="../assets/js/bootstrap-collapse.js"></script>
-    <script src="../assets/js/bootstrap-carousel.js"></script>
-    <script src="../assets/js/bootstrap-typeahead.js"></script>
-
+    <script src="https://connect.soundcloud.com/sdk.js"></script>
+<script src="js/underscore.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/backbone.js"></script>
+<script src="js/main.js"></script>
+    
   </body>
 </html>
