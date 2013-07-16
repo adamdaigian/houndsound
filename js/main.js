@@ -6,7 +6,7 @@ window.App = soundc = {
 	Collections: {},
 	Views: {}
 };
-SC.initialize({      
+SC.initialize({
 		client_id: '45e1f7e473518eccbcb6bc27ecac7c44'
 	});
 
@@ -26,7 +26,7 @@ App.Models.Track = Backbone.Model.extend({
 });
 
 App.Collections.Tracks = Backbone.Collection.extend({
-	model: App.Models.Track	
+	model: App.Models.Track
 });
 
 App.Views.Tracks = Backbone.View.extend({
@@ -43,10 +43,10 @@ App.Views.Tracks = Backbone.View.extend({
         	self.collection.on("sync", this.render, this);
         	self.render();
         }
-      
+
 	)},
 
-	render: function() {		
+	render: function() {
 		this.collection.each(this.addOne, this);
 		return this;
 	},
@@ -63,12 +63,12 @@ App.Views.Track = Backbone.View.extend({
 	template: template('trackTemplate'),
 
 	initialize: function() {
-		
-                
+
+
 	},
 
 	render: function() {
-		
+
 		var template = this.template( this.model.toJSON() );
 		this.$el.html(template);
 		return this;
