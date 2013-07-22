@@ -6,9 +6,6 @@ window.App = soundc = {
 	Collections: {},
 	Views: {}
 };
-SC.initialize({
-		client_id: '45e1f7e473518eccbcb6bc27ecac7c44'
-	});
 
 window.template = function(id) {
 	return _.template( $('#' + id).html() );
@@ -35,7 +32,7 @@ App.Views.Tracks = Backbone.View.extend({
 	initialize: function(){
 		_.bindAll(this, "render");
 		var self = this;
-		SC.get('/tracks', { genres: 'chillwave', order: 'hotness' }, function(tracks, error) {
+		SC.get('/tracks', { genres: 'chillwave', limit: 10 }, function(tracks, error) {
 			if(error) console.log('ERROR: ', error);
 			_.each(tracks, function(value, index){
                 self.collection.add(new App.Models.Track(value));
@@ -58,9 +55,8 @@ App.Views.Tracks = Backbone.View.extend({
 });
 
 App.Views.Track = Backbone.View.extend({
-	tagName: 'li',
 	className: 'space-list-item',
-	template: template('trackTemplate'),
+	template: template('playlist'),
 
 	initialize: function() {
 
