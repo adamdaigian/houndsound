@@ -8,6 +8,47 @@
     <meta name="author" content="">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="https://connect.soundcloud.com/sdk.js"></script>
+    <script src="http://connect.soundcloud.com/2/latest.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://fgnass.github.com/spin.js/spin.js"></script>
+    <script src="js/favs.js"></script>
+    <script type="text/javascript">
+        $.fn.spin = function(opts) {
+          this.each(function() {
+            var $this = $(this),
+              spinner = $this.data('spinner');
+
+            if (spinner) spinner.stop();
+            if (opts !== false) {
+              opts = $.extend({color: $this.css('color')}, opts);
+              spinner = new Spinner(opts).spin(this);
+              $this.data('spinner', spinner);
+            }
+          });
+          return this;
+        };
+        $(function() {
+          $("#cwsw-connect").click(function(e) {
+            e.preventDefault();
+            $(this).hide();
+            var opts = {
+              lines: 12, // The number of lines to draw
+              length: 14, // The length of each line
+              width: 10, // The line thickness
+              radius: 15, // The radius of the inner circle
+              color: '#292929', // #rbg or #rrggbb
+              speed: 1, // Rounds per second
+              // trail: 66, // Afterglow percentage
+              // shadow: true // Whether to render a shadow
+            };
+            $("#spin").show().spin(opts);
+
+          });
+        });
+      </script>
+
   </head>
 
   <body>
@@ -15,17 +56,15 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
+
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Project name</a>
-          <div class="nav-collapse collapse">
-            <p class="navbar-text pull-right">
-             <a href="#" class="connect"><img src="http://connect.soundcloud.com/2/btn-connect-m.png"></a>
-             <p class="navbar-text pull-right">Hello, <span id="username"></span></p>
-            </p>
+          <div class="nav">
+            <li class="navbar-text">Think this site is dope, press cmd + ctrl + d
+            </li>
             <ul class="nav">
 
             </ul>
@@ -37,24 +76,33 @@
     <div class="container-fluid">
       <div class="row-fluid">
 
-        <div class="span9 pull-left">
-          <div class="tracks">
-    <script id="playlist" type="text/template">
-      <iframe width="100%" height="166" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F<%= id %>&amp;show_artwork=true&amp;auto_play=fals
-e&amp;color=00c37a&amp;show_comments=true"></iframe>
-    </script>
-          </div>
-        </div>
+      <div id="target" class="span9 pull-left">
+          <div id="login"><script type="text/javascript" charset="utf-8">
+                 SC.connectForm({
+                   size:         "l",                 // size of the button (s, m, l)
+                   client_id:    "45e1f7e473518eccbcb6bc27ecac7c44",
+                   redirect_uri: "http://houndsound.site44.com/callback.html",
+                   flow:         "code",
+                   connected: function(){
+                     SC.get("/me", function(me){
+                       _uid = me.id;
+                       getUserFollowings(_uid)
+                     });
+                   }
+                 });
+               </script>
+             <!-- <a href="#" class="connect"><img src="http://connect.soundcloud.com/2/btn-connect-m.png"></a>
+             <p class="navbar-text pull-right">Hello, <span id="username"></span></p> --></div>
+          <div id="spin" style="display:none;"></div>
+          <div id="target"></div>
+      </div>
 
 
       <div class="span3 pull-right">
         <div class="">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Genres</li>
-              <a href="#">Link</a>
-              <a href="#">Link</a>
-              <a href="#">Link</a>
+              <button class="btn btn-block btn-info">New Playlist!</button>
             </ul>
           </div><!--/.well -->
 
@@ -84,10 +132,9 @@ e&amp;color=00c37a&amp;show_comments=true"></iframe>
 
     </div><!--/.fluid-container-->
 
-    <script src="https://connect.soundcloud.com/sdk.js"></script>
-<script src="js/underscore.js"></script>
-<script src="js/jquery.js"></script>
+
+<!-- <script src="js/underscore.js"></script>
 <script src="js/backbone.js"></script>
-<script src="js/main.js"></script>
+<script src="js/main.js"></script> -->
   </body>
 </html>

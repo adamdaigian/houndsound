@@ -6,14 +6,11 @@ window.App = soundc = {
 	Collections: {},
 	Views: {}
 };
+
 SC.initialize({
 		client_id: '45e1f7e473518eccbcb6bc27ecac7c44',
 		redirect_uri: 'http://houndsound.site44.com/callback.html'
 	});
-
-window.template = function(id) {
-	return _.template( $('#' + id).html() );
-};
 
 $(document).ready(function() {
   $('a.connect').click(function(e) {
@@ -21,24 +18,14 @@ $(document).ready(function() {
     SC.connect(function() {
       SC.get('/me', function(me) {
         $('#username').html(me.username);
-        var user_id = me.id
-        getUserFollowings(user_id);
       });
     });
   });
 });
 
-function getUserFollowings(user_id){
-	SC.get("/users/"+user_id+"/followings", function(data){
-		if(data.length > 1)
-
-		function getFollowersFavs(followerid){
-		  SC.get("/users/"+followerid+"/favorites", function(data){
-		    if(data.length > 0) {
-		      getFavTrack(data);
-		    }
-		  });
-		}
+window.template = function(id) {
+	return _.template( $('#' + id).html() );
+};
 
 App.Models.Track = Backbone.Model.extend({
 	validate: function(attrs) {
